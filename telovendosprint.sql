@@ -35,7 +35,7 @@ CREATE TABLE proveedor (
 );
 -- CREACIÓN DE USUARIO Y PERMISOS
 CREATE USER 'admintienda'@'localhost' IDENTIFIED BY 'admintienda';
-GRANT ALL PRIVILEGES ON Telovendo.* TO 'admintienda'@'localhost';
+GRANT ALL PRIVILEGES ON Sprint_telovendo.* TO 'admintienda'@'localhost';
 
 -- TABLA PRODUCTOS INFO: 
 -- 10 CLIENTES
