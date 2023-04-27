@@ -183,3 +183,37 @@ WHERE categoria = (
     ORDER BY COUNT(*) DESC
     LIMIT 1
 );
+
+/* Comentado Sugerencias:
+
+a) crear una entidad proveedor_producto, como tabla de unión de la reLación muchos a muchos 
+(en este caso se debe eliminar la llave foranea existente aen la entidad productos)
+
+create table  proveedor_producto(
+producto_id  SKU VARCHAR(255) ,
+proveedor_id int,
+FOREIGN (producto_id) REFERENCES producto(SKU),
+FOREIGN (proveedor_id) REFERENCES proveedor(id),
+);
+
+b) crear tabla  pedido  que haga relación con la entidad cliente, relación 1-n
+
+CREATE TABLE pedido(
+  numero_pedido INT AUTO_INCREMENT PRIMARY KEY,
+  codigo_cliente INT NOT NULL,
+  FOREIGN KEY (codigo_cliente) REFERENCES cliente(codigo),
+  fecha DATE,
+  total_pagado INT NOT NULL
+);
+
+c) crear tabla detallePedido,  relación 1-n
+
+CREATE TABLE detallePedido(
+	id_detallete INT NOT NULL PRIMARY KEY,
+	pedido_id int,
+	FOREIGN KEY (pedido_id) REFERENCES pedido(numero_pedido),
+	cantidad INT NOT NULL,
+	SKU_producto VARCHAR(255) NOT NULL,
+	FOREIGN KEY (SKU_producto) REFERENCES producto(SKU),
+
+);
