@@ -123,54 +123,6 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
-/***
-CREATE TABLE cliente (
-  codigo INT AUTO_INCREMENT PRIMARY KEY,
-  nombres VARCHAR(255) NOT NULL,
-  apellidos VARCHAR(255) NOT NULL,
-  telefono VARCHAR (12),
-  direccion VARCHAR(255),
-  comuna VARCHAR(100)
-);
-
--- TABLA PROVEEDOR
-
-CREATE TABLE proveedor (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  representante_legal VARCHAR(255) NOT NULL,
-  nombre_corporativo VARCHAR(255) NOT NULL,
-  telefono VARCHAR(20) NOT NULL,
-  telefono2 VARCHAR(20) NOT NULL,
-  nombre_contacto VARCHAR(255) NOT NULL,
-  categoria VARCHAR(50) NOT NULL,
-  correo_facturacion VARCHAR(255) NOT NULL
-);
-
--- TABLA PRODUCTO
-
-CREATE TABLE producto (
-  SKU VARCHAR(255) NOT NULL UNIQUE,
-  nombre VARCHAR(255) NOT NULL,
-  categoria VARCHAR(255) NOT NULL,
-  Proveedor INT NOT NULL,
-  FOREIGN KEY  (Proveedor) REFERENCES proveedor(id),
-  Color ENUM ('ROJO', 'AMARILLO', 'AZUL', 'BLANCO', 'GRIS', 'NEGRO', 'VERDE', 'CYAN', 'MAGENTA', 'ROSADO', 'PURPURA', 'VIOLETA', 'FUCSIA', 'CAFE') NOT NULL,
-  Stock INT NOT NULL
-);
-
--- TABLA PEDIDOS
-CREATE TABLE Pedidos (
-  numero_pedido INT AUTO_INCREMENT PRIMARY KEY,
-  codigo_cliente INT NOT NULL,
-  FOREIGN KEY (codigo_cliente) REFERENCES cliente(codigo),
-  SKU_producto VARCHAR(255) NOT NULL,
-  FOREIGN KEY (SKU_producto) REFERENCES producto(SKU),
-  cantidad INT NOT NULL,
-  boleta INT NOT NULL,
-  total_pagado INT NOT NULL
-);
-*/
-
 -- CREACIÓN DE USUARIO Y PERMISOS
 CREATE USER 'admintienda'@'localhost' IDENTIFIED BY 'admintienda';
 GRANT ALL PRIVILEGES ON Sprint_telovendo.* TO 'admintienda'@'localhost';
@@ -268,6 +220,29 @@ SELECT p.SKU, pr.id
 FROM producto p, proveedor pr 
 WHERE p.categoria = pr.categoria;
 
+-- AÑADIMOS 15 PEDIDOS
+INSERT INTO pedido (numero_pedido, codigo_cliente, cantidad, boleta, total_pagado) 
+VALUES 	(1, 3, 5, 1, 10000),
+	    (2, 2, 3, 2, 6000),
+        (3, 1, 10, 3, 5900),
+        (4, 4, 2, 4, 200000),
+        (5, 5, 6, 5, 700000),
+        (6, 6, 2, 6, 90000),
+        (7, 10, 1, 7, 2000),
+        (8, 9, 8, 8, 55000),
+        (9, 8, 9, 9, 20000),
+        (10, 7, 5, 10, 870000),
+		(11, 2, 3, 11, 6000),
+        (12, 1, 10, 12, 5900),
+        (13, 4, 2, 13, 200000),
+        (14, 5, 6, 14, 700000),
+        (15, 4, 2, 15, 90000);
+        
+-- INSERTAMOS LA DATA EN LA TABLA INTERMEDIA producto_has_pedido, DESDE LAS TABLAS PRODUCTO Y PEDIDO
+INSERT INTO producto_has_pedido (producto_SKU, pedido_numero_pedido)
+SELECT p.SKU, pe.numero_pedido
+FROM producto p, pedido pe;
+
 -- PREGUNTAS PARA EL CODIGO SPRINT
 -- 1.-  Cuál es la categoría de productos que más se repite.
 SELECT categoria, COUNT(*) as repeticiones
@@ -307,15 +282,9 @@ WHERE categoria = (
     LIMIT 1
 );
 
-select * from proveedor;
+-- select * from producto_has_pedido;
 -- DROP DATABASE Sprint_telovendo;
 -- DROP TABLE cliente;
 
-/***
-SELECT p.SKU, pr.id 
-FROM producto p, proveedor pr 
-WHERE p.categoria = pr.categoria;
-
-*/
 
 
