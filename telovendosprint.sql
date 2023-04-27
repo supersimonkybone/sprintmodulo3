@@ -29,6 +29,7 @@ CREATE TABLE proveedor (
   representante_legal VARCHAR(255) NOT NULL,
   nombre_corporativo VARCHAR(255) NOT NULL,
   telefono VARCHAR(20) NOT NULL,
+  telefono2 VARCHAR(20) NOT NULL,
   nombre_contacto VARCHAR(255) NOT NULL,
   categoria VARCHAR(50) NOT NULL,
   correo_facturacion VARCHAR(255) NOT NULL
@@ -54,12 +55,12 @@ VALUES 	('Ignacio Simon', 'Perez Lastra', '+56912345678', 'San Pablo 123', 'Vita
 -- 20 PRODUCTOS
 
 -- 05 PROVEEDORES
-INSERT INTO proveedor (representante_legal, nombre_corporativo, telefono, nombre_contacto, categoria, correo_facturacion) 
-VALUES 	('Rodrigo Monckenberg', 'Importaciones y Exportaciones Tecnodata S.A.', '+56224456350', 'Tecnodata', 'Tecnología', 'sertec@tecnodatasa.cl'),
-	('Ricardo Eluchans', 'Computación e ingeniería S.A.', '+56224112472', 'COINSA', 'Tecnología', 'facturacion@coinsa.cl'),
-	('Elena Risopatron', 'A&S Tecnologias Computacionales Ltda.', '+56226322930', 'A&S', 'e-commerce', 'pagofactura@aystecnologia.cl'),
-        ('Ignacia Piñera', 'ESPEX Ingeniería LTDA', '+56225124305', 'ESPEX', 'Servicios de Consultoría Técnica', 'facpag@espex.cl'),
-        ('James Wu', 'Foxconn Technology Co Ltd', '+886222683466', 'Foxconn', 'Tecnología', 'ir@foxconn.com');
+INSERT INTO proveedor (representante_legal, nombre_corporativo, telefono, telefono2, nombre_contacto, categoria, correo_facturacion) 
+VALUES  ('Rodrigo Monckenberg', 'Importaciones y Exportaciones Tecnodata S.A.', '+56224456350','+56224456351', 'Tecnodata', 'Tecnología', 'sertec@tecnodatasa.cl'),
+  ('Ricardo Eluchans', 'Computación e ingeniería S.A.', '+56224112472', '+56224112471','COINSA', 'Tecnología', 'facturacion@coinsa.cl'),
+  ('Elena Risopatron', 'A&S Tecnologias Computacionales Ltda.', '+56226322930','+56226322932', 'A&S', 'e-commerce', 'pagofactura@aystecnologia.cl'),
+        ('Ignacia Piñera', 'ESPEX Ingeniería LTDA', '+56225124305', '+56225124307','ESPEX', 'Servicios de Consultoría Técnica', 'facpag@espex.cl'),
+        ('James Wu', 'Foxconn Technology Co Ltd', '+886222683466','+886222683469', 'Foxconn', 'Tecnología', 'ir@foxconn.com');
 
 -- PREGUNTAS PARA EL CODIGO SPRINT
 -- 1.-  Cuál es la categoría de productos que más se repite.
