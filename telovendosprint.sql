@@ -22,6 +22,7 @@ CREATE TABLE producto (
   Proveedor VARCHAR(255) NOT NULL,
   Color ENUM ('ROJO', 'AMARILLO', 'AZUL', 'BLANCO', 'GRIS', 'NEGRO', 'VERDE', 'CYAN', 'MAGENTA', 'ROSADO', 'PURPURA', 'VIOLETA', 'FUCSIA', 'CAFE') NOT NULL,
   Stock INT NOT NULL
+	foreign key  (Proveedor) references proveedor(id);
 );
 -- TABLA PROVEEDOR
 CREATE TABLE proveedor (
