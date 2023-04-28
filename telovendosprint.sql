@@ -268,7 +268,7 @@ GROUP BY color
 ORDER BY repeticiones DESC
 LIMIT 1;
 
--- 4.-  Cual o cuales son los proveedores con menor stock de productos. (Se decidio mostrar 3)
+-- 4.-  Cual o cuales son los proveedores con menor stock de productos. (Se decidio mostrar 2)
 SELECT pr.id, pr.nombre_corporativo, SUM(p.Stock) AS stock_total
 FROM producto p
 INNER JOIN producto_has_proveedor pp ON p.SKU = pp.producto_SKU
@@ -276,10 +276,12 @@ INNER JOIN proveedor pr ON pp.proveedor_id = pr.id
 GROUP BY pr.id
 ORDER BY stock_total ASC
 LIMIT 2;
+
 -- 5.- Cambia la categoría de productos más popular por ‘Electrónica y computación’.
+SET SQL_SAFE_UPDATES = 0;
 UPDATE producto
-SET categoria = 'Electrnica y Computacion'
-WHERE categoria = (
+SET categoria = 'Electronica y Computacion'
+WHERE categoria IN (
   SELECT categoria
   FROM (
     SELECT categoria, COUNT(*) AS count
@@ -289,10 +291,11 @@ WHERE categoria = (
     LIMIT 1
   ) AS t
 );
+SET SQL_SAFE_UPDATES = 1;
 
--- select * from producto_has_pedido;
+-- select * from producto;
 -- DROP DATABASE Sprint_telovendo;
--- DROP TABLE cliente;
+-- DROP TABLE producto;
 
 /* Comentado Sugerencias:
 a) crear una entidad proveedor_producto, como tabla de unión de la reLación muchos a muchos 
