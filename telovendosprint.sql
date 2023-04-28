@@ -129,18 +129,6 @@ GRANT ALL PRIVILEGES ON Sprint_telovendo.* TO 'admintienda'@'localhost';
 
 -- TABLA PRODUCTOS INFO: 
 -- 10 CLIENTES
-INSERT INTO cliente (nombres, apellidos, telefono, direccion, comuna) 
-VALUES 	('Ignacio Simon', 'Perez Lastra', '+56912345678', 'San Pablo 123', 'Vitacura'),
-	    ('Eduardo Ricardo', 'Rockefeler Soto', '+56943245678', 'San Pedro 321', 'Las Condes'),
-        ('Harry Edgard', 'Potter Rodriguez', '+56912654678', 'Providencia 23', 'Providencia'),
-        ('Hermione Sandra', 'Granger Sotomayor', '+56912345123', 'Alvarez 666', 'Viña del mar'),
-        ('Ron Vodka', 'Weasly Ramirez', '+56965435678', 'Limache 65', 'Viña del mar'),
-        ('Albus Peter', 'Dumbledore Lastra', '+56912765438', 'Londres 43', 'Peñablanca'),
-        ('Sasha Ignacia', 'Grey Perez', '+56918765678', 'Liverpool 89', 'Temuco'),
-        ('Severus Adolfo', 'Snape Pinochet', '+56917655678', 'Valparaiso 1314', 'Santiago'),
-        ('Minerva Marcela', 'McGonagall Veas', '+56976895678', 'Blanco Encalada 154', 'Quilpue'),
-        ('Homero Jay', 'Simpson Simpson', '+56979685678', 'Avenida Siempreviva 742', 'Springfield');
-
 INSERT INTO cliente (codigo, nombres, apellidos, telefono, direccion, comuna) 
 VALUES 	(1, 'Ignacio Simon', 'Perez Lastra', '+56912345678', 'San Pablo 123', 'Vitacura'),
 	    (2, 'Eduardo Ricardo', 'Rockefeler Soto', '+56943245678', 'San Pedro 321', 'Las Condes'),
@@ -153,70 +141,6 @@ VALUES 	(1, 'Ignacio Simon', 'Perez Lastra', '+56912345678', 'San Pablo 123', 'V
         (9, 'Minerva Marcela', 'McGonagall Veas', '+56976895678', 'Blanco Encalada 154', 'Quilpue'),
         (10, 'Homero Jay', 'Simpson Simpson', '+56979685678', 'Avenida Siempreviva 742', 'Springfield');
 
--- carcasas
-INSERT INTO Producto (SKU, nombre, categoria, proveedor, color, stock)
-VALUES ('28346', 'Carcasa Samsung S9','Celulares', '1','ROSADO', 10)
-;
-INSERT INTO Producto (SKU, nombre, categoria, proveedor, color, stock)
-VALUES ('27449' , 'Carcasa Samsung J5 Prime', 'Celulares', '1', 'AZUL', 8)
-;
-INSERT INTO Producto (SKU, nombre, categoria, proveedor, color, stock)
-VALUES ('21921', 'Carcasa para Motorola G3', 'Celulares', '1', 'ROJO', 5)
-;
-INSERT INTO Producto (SKU, nombre, categoria, proveedor, color, stock)
-VALUES ('28338', 'Carcasa Apple Iphone 8', 'Celulares', '1', 'NEGRO', 5)
-;
-INSERT INTO Producto (SKU, nombre, categoria, proveedor, color, stock)
-VALUES ('33719', 'Carcasa Samsung A70', 'Celulares', '2', 'NEGRO', 10)
-;
--- Webcams
-INSERT INTO Producto (SKU, nombre, categoria, proveedor, color, stock)
-VALUES ('18858', 'Webcam FaceCam 100X HD', 'Computacion', '2', 'NEGRO', 5)
-;
-INSERT INTO Producto (SKU, nombre, categoria, proveedor, color, stock)
-VALUES ('40509', 'Webcam FullHD 1080p/60 fps StreamCam Plus', 'computacion', '2', 'AZUL', 10)
-;
-INSERT INTO Producto (SKU, nombre, categoria, proveedor, color, stock)
-VALUES ('44085', 'Kit Webcam y Capturadora de Video BO311D', 'Computacion', '2', 'NEGRO', 10)
-;
-INSERT INTO Producto (SKU, nombre, categoria, proveedor, color, stock)
-VALUES ('38185', 'Webcam BCC950 ConferenceCam', 'Computacion', '3', 'AZUL', 15)
-;
-INSERT INTO Producto (SKU, nombre, categoria, proveedor, color, stock)
-VALUES ('38211', 'Webcam PW310O HD', 'computacion', '3','NEGRO', 8)
-;
--- Consolas y accesorios
-INSERT INTO Producto (SKU, nombre, categoria, proveedor, color, stock)
-VALUES ('30270', 'Adaptador Ethernet para consola Nintendo Switch', 'Consolas_accesorios', '3', 'BLANCO', 15)
-;
-INSERT INTO Producto (SKU, nombre, categoria, proveedor, color, stock)
-VALUES ('40596', 'Cargador doble controles PS5', 'Consolas_accesorios', '3', 'BLANCO', 30)
-;
-INSERT INTO Producto (SKU, nombre, categoria, proveedor, color, stock)
-VALUES  ('34603', 'Cargador Joy con 4 en 1 Nintendo Switch', 'Consolas_accesorios', '4', 'NEGRO', 3)
-;
-INSERT INTO Producto (SKU, nombre, categoria, proveedor, color, stock)
-VALUES ('31510', 'HYPERKIN Amplificador de audifonos para PS4 Controller', 'Consolas_accesorios', '4', 'NEGRO',3)
-;
-INSERT INTO Producto (SKU, nombre, categoria, proveedor, color, stock)
-VALUES ('33100', 'Disco Externo 2TB 2_5" para PS4', 'Consolas_accesorios', '4' , 'NEGRO', 13)
-;
--- accesorios_computacion
-INSERT INTO Producto (SKU, nombre, categoria, proveedor, color, stock)
-VALUES ('40643', 'Cargador alternativo para Notebook Samsung 40W_19V_2.1A_conector_5.5mm*3', 'Computacion_accesorios','4', 'NEGRO', 50)
-;
-INSERT INTO Producto (SKU, nombre, categoria, proveedor, color, stock)
-VALUES ('39813', 'Candado Notebook Combinacion de 3 digitos tipo USB Lock', 'Computacion_accesorios', '5', 'BLANCO', 100)
-;
-INSERT INTO Producto (SKU, nombre, categoria, proveedor, color, stock)
-VALUES ('33028', 'Base Notebook con 2 Ventiladores', 'Computacion_accesorios', '5', 'NEGRO', 50)
-;
-INSERT INTO Producto (SKU, nombre, categoria, proveedor, color, stock)
-VALUES ('30145', 'Bateria alternativa para Notebook Asus A450x450 R510 P450 F550', 'Computacion_accesorios', 5, 'NEGRO', 5)
-;
-INSERT INTO Producto (SKU, nombre, categoria, proveedor, color, stock)
-VALUES ('40631', 'Cargador alternativo para Notebook Dell_45w_19.5V', 'Computacion_accesorios', 'NEGRO', 22)
-;
 -- 05 PROVEEDORES
 INSERT INTO proveedor (id, representante_legal, nombre_corporativo, telefono, telefono2, nombre_contacto, categoria, correo_facturacion) 
 VALUES  (1, 'Rodrigo Monckenberg', 'Importaciones y Exportaciones Tecnodata S.A.', '+56224456350','+56224456351', 'Tecnodata', 'e-Consolas_accesorios', 'sertec@tecnodatasa.cl'),
