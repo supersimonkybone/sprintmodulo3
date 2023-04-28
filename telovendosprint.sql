@@ -289,6 +289,10 @@ WHERE categoria = (
 -- DROP DATABASE Sprint_telovendo;
 -- DROP TABLE cliente;
 
+-- select * from producto_has_pedido;
+-- DROP DATABASE Sprint_telovendo;
+-- DROP TABLE cliente;
+
 -- ARACILY
 /* Comentado Sugerencias:
 
