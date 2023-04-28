@@ -118,18 +118,6 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
--- INSERTAMOS LA DATA EN LA TABLA INTERMEDIA producto_has_proveedor, DESDE LAS TABLAS PRODUCTO Y PROVEEDOR
-INSERT INTO producto_has_proveedor (producto_SKU, proveedor_id) 
-SELECT p.SKU, pr.id 
-FROM producto p, proveedor pr 
-WHERE p.categoria = pr.categoria;
-
-
--- INSERTAMOS LA DATA EN LA TABLA INTERMEDIA producto_has_pedido, DESDE LAS TABLAS PRODUCTO Y PEDIDO
-INSERT INTO producto_has_pedido (producto_SKU, pedido_numero_pedido)
-SELECT p.SKU, pe.numero_pedido
-FROM producto p, pedido pe;
-
 
 -- ALGUNAS VALIDACIONES
 SET SQL_MODE=@OLD_SQL_MODE;
@@ -245,7 +233,17 @@ VALUES 	(1, 3, 5, 1, 10000),
         (13, 4, 2, 13, 200000),
         (14, 5, 6, 14, 700000),
         (15, 4, 2, 15, 90000);
-        
+
+-- INSERTAMOS LA DATA EN LA TABLA INTERMEDIA producto_has_proveedor, DESDE LAS TABLAS PRODUCTO Y PROVEEDOR
+INSERT INTO producto_has_proveedor (producto_SKU, proveedor_id) 
+SELECT p.SKU, pr.id 
+FROM producto p, proveedor pr 
+WHERE p.categoria = pr.categoria;
+
+-- INSERTAMOS LA DATA EN LA TABLA INTERMEDIA producto_has_pedido, DESDE LAS TABLAS PRODUCTO Y PEDIDO
+INSERT INTO producto_has_pedido (producto_SKU, pedido_numero_pedido)
+SELECT p.SKU, pe.numero_pedido
+FROM producto p, pedido pe;        
 
 -- PREGUNTAS PARA EL CODIGO SPRINT
 -- 1.-  Cuál es la categoría de productos que más se repite.
@@ -277,6 +275,8 @@ GROUP BY pr.id, pr.nombre_corporativo
 ORDER BY stock_total ASC
 LIMIT 2;
 set @@sql_mode='ONLY_FULL_GROUP_BY';
+
+select * from producto_has_proveedor;
 
 -- 5.- Cambia la categoría de productos más popular por ‘Electrónica y computación’.
 SET SQL_SAFE_UPDATES = 0;
