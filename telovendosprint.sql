@@ -293,8 +293,8 @@ WHERE categoria IN (
   ) AS t
 );
 SET SQL_SAFE_UPDATES = 1;
+select * from producto;
 
--- select * from producto;
 -- DROP DATABASE Sprint_telovendo;
 -- DROP TABLE producto;
 
