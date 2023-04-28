@@ -281,7 +281,15 @@ WHERE categoria = (
     ORDER BY COUNT(*) DESC
     LIMIT 1
 );
+-- select * from producto_has_pedido;
+-- DROP DATABASE Sprint_telovendo;
+-- DROP TABLE cliente;
 
+-- select * from producto_has_pedido;
+-- DROP DATABASE Sprint_telovendo;
+-- DROP TABLE cliente;
+
+-- ARACILY
 /* Comentado Sugerencias:
 
 a) crear una entidad proveedor_producto, como tabla de unión de la reLación muchos a muchos 
