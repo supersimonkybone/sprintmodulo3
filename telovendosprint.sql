@@ -276,7 +276,6 @@ ORDER BY stock_total ASC
 LIMIT 2;
 set @@sql_mode='ONLY_FULL_GROUP_BY';
 
-select * from producto_has_proveedor;
 
 -- 5.- Cambia la categoría de productos más popular por ‘Electrónica y computación’.
 SET SQL_SAFE_UPDATES = 0;
