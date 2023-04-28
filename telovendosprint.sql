@@ -293,10 +293,9 @@ WHERE categoria IN (
   ) AS t
 );
 SET SQL_SAFE_UPDATES = 1;
-select * from producto;
+-- PARA REVISAR RESULTADO DEL EJERCICIO 5, usar el SELECT
+-- select * from producto;
 
--- DROP DATABASE Sprint_telovendo;
--- DROP TABLE producto;
 
 /* Comentado Sugerencias:
 a) crear una entidad proveedor_producto, como tabla de unión de la reLación muchos a muchos 
