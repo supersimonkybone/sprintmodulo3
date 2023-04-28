@@ -118,6 +118,19 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
+-- INSERTAMOS LA DATA EN LA TABLA INTERMEDIA producto_has_proveedor, DESDE LAS TABLAS PRODUCTO Y PROVEEDOR
+INSERT INTO producto_has_proveedor (producto_SKU, proveedor_id) 
+SELECT p.SKU, pr.id 
+FROM producto p, proveedor pr 
+WHERE p.categoria = pr.categoria;
+
+
+-- INSERTAMOS LA DATA EN LA TABLA INTERMEDIA producto_has_pedido, DESDE LAS TABLAS PRODUCTO Y PEDIDO
+INSERT INTO producto_has_pedido (producto_SKU, pedido_numero_pedido)
+SELECT p.SKU, pe.numero_pedido
+FROM producto p, pedido pe;
+
+
 -- ALGUNAS VALIDACIONES
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
@@ -214,11 +227,6 @@ VALUES ('30145', 'Bateria alternativa para Notebook Asus A450x450 R510 P450 F550
 INSERT INTO Producto (SKU, nombre, categoria, color, stock)
 VALUES ('40631', 'Cargador alternativo para Notebook Dell_45w_19.5V', 'Computacion_accesorios', 'NEGRO', 22)
 ;
--- INSERTAMOS LA DATA EN LA TABLA INTERMEDIA producto_has_proveedor, DESDE LAS TABLAS PRODUCTO Y PROVEEDOR
-INSERT INTO producto_has_proveedor (producto_SKU, proveedor_id) 
-SELECT p.SKU, pr.id 
-FROM producto p, proveedor pr 
-WHERE p.categoria = pr.categoria;
 
 -- AÑADIMOS 15 PEDIDOS
 INSERT INTO pedido (numero_pedido, codigo_cliente, cantidad, boleta, total_pagado) 
@@ -238,10 +246,6 @@ VALUES 	(1, 3, 5, 1, 10000),
         (14, 5, 6, 14, 700000),
         (15, 4, 2, 15, 90000);
         
--- INSERTAMOS LA DATA EN LA TABLA INTERMEDIA producto_has_pedido, DESDE LAS TABLAS PRODUCTO Y PEDIDO
-INSERT INTO producto_has_pedido (producto_SKU, pedido_numero_pedido)
-SELECT p.SKU, pe.numero_pedido
-FROM producto p, pedido pe;
 
 -- PREGUNTAS PARA EL CODIGO SPRINT
 -- 1.-  Cuál es la categoría de productos que más se repite.
@@ -265,49 +269,41 @@ ORDER BY repeticiones DESC
 LIMIT 1;
 
 -- 4.-  Cual o cuales son los proveedores con menor stock de productos. (Se decidio mostrar 3)
-SELECT Proveedor, SUM(Stock) AS total_stock
-FROM producto
-GROUP BY Proveedor
-ORDER BY total_stock ASC
-LIMIT 3;
-
--- 5.- Cambien la categoría de productos más popular por ‘Electrónica y computación’.
+SELECT pr.id, pr.nombre_corporativo, SUM(p.Stock) AS stock_total
+FROM producto p
+INNER JOIN producto_has_proveedor pp ON p.SKU = pp.producto_SKU
+INNER JOIN proveedor pr ON pp.proveedor_id = pr.id
+GROUP BY pr.id
+ORDER BY stock_total ASC
+LIMIT 2;
+-- 5.- Cambia la categoría de productos más popular por ‘Electrónica y computación’.
 UPDATE producto
-SET categoria = 'Electrónica y computación'
+SET categoria = 'Electrnica y Computacion'
 WHERE categoria = (
-    SELECT categoria
+  SELECT categoria
+  FROM (
+    SELECT categoria, COUNT(*) AS count
     FROM producto
     GROUP BY categoria
-    ORDER BY COUNT(*) DESC
+    ORDER BY count DESC
     LIMIT 1
+  ) AS t
 );
--- select * from producto_has_pedido;
--- DROP DATABASE Sprint_telovendo;
--- DROP TABLE cliente;
 
 -- select * from producto_has_pedido;
 -- DROP DATABASE Sprint_telovendo;
 -- DROP TABLE cliente;
 
--- select * from producto_has_pedido;
--- DROP DATABASE Sprint_telovendo;
--- DROP TABLE cliente;
-
--- ARACILY
 /* Comentado Sugerencias:
-
 a) crear una entidad proveedor_producto, como tabla de unión de la reLación muchos a muchos 
 (en este caso se debe eliminar la llave foranea existente aen la entidad productos)
-
 create table  proveedor_producto(
 producto_id  SKU VARCHAR(255) ,
 proveedor_id int,
 FOREIGN (producto_id) REFERENCES producto(SKU),
 FOREIGN (proveedor_id) REFERENCES proveedor(id),
 );
-
 b) crear tabla  pedido  que haga relación con la entidad cliente, relación 1-n
-
 CREATE TABLE pedido(
   numero_pedido INT AUTO_INCREMENT PRIMARY KEY,
   codigo_cliente INT NOT NULL,
@@ -315,9 +311,7 @@ CREATE TABLE pedido(
   fecha DATE,
   total_pagado INT NOT NULL
 );
-
 c) crear tabla detallePedido,  relación 1-n
-
 CREATE TABLE detallePedido(
 	id_detallete INT NOT NULL PRIMARY KEY,
 	pedido_id int,
@@ -325,5 +319,4 @@ CREATE TABLE detallePedido(
 	cantidad INT NOT NULL,
 	SKU_producto VARCHAR(255) NOT NULL,
 	FOREIGN KEY (SKU_producto) REFERENCES producto(SKU),
-
 );
